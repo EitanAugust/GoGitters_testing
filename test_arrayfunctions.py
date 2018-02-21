@@ -1,90 +1,41 @@
 import pytest
+from arrayfunctions import ArrayFunc
 
 
-def test_find_max_diff():
-    from arrayfunctions import max_diff
+def test_ArrayFunc(capsys):
     from math import isclose
 
-    list_1_diff = max_diff([1, 4, 10])
-    list_2_diff = max_diff([0, -8, -4, 0, 4, 11])
-    list_3_diff = max_diff([7, 7, 7, 7, 7])
-    list_4_diff = max_diff([0, 0.1, 0.205, 0.3])
-    list_5_diff = max_diff([-7, 0, -7])
-
-    assert list_1_diff == 6
-    assert list_2_diff == -8
-    assert list_3_diff == 0
-    assert isclose(list_4_diff, 0.105, abs_tol=10e-9)
-    assert list_5_diff == [-7, 7]
-
-
-def test_max_diff_exceptions(capsys):
-    from arrayfunctions import max_diff
-
-    list1 = max_diff([])
-    out1, err1 = capsys.readouterr()
-
-    list2 = max_diff([1])
-    out2, err2 = capsys.readouterr()
-
-    list3 = max_diff([0, 1, 2, 'Hello'])
+    list_1 = ArrayFunc([1, 4, 10])
+    list_1.calc_max_diff()
+    list_2 = ArrayFunc([0, 0.1, 0.205, 0.3])
+    list_2.calc_max_diff()
+    list_3 = ArrayFunc([1])
+    list_3.calc_max_diff()
     out3, err3 = capsys.readouterr()
 
-    assert list1 is None
-    assert list2 is None
-    assert list3 is None
-    assert out1 == 'Numerical list must be at least of length 2\n'
-    assert out2 == 'Numerical list must be at least of length 2\n'
-    assert out3 == 'Only numerical lists accepted\n'
+    assert list_1.max_diff == 6
+    assert isclose(list_2.max_diff, 0.105, abs_tol=10e-9)
+    assert out3 == 'Numerical list must be at least of length 2\n'
 
+    list_4 = ArrayFunc([4, 8.5, 1.2])
+    list_4.calc_sum_list()
+    list_5 = ArrayFunc([0, 5, 'Heya'])
+    list_5.calc_sum_list()
+    out5, err5 = capsys.readouterr()
 
-def test_sum_list(capsys):
-    from arrayfunctions import sum_list
-    sum_1 = sum_list([5])
-    sum_2 = sum_list([2, 7])
-    sum_3 = sum_list([4, 8.5, 1.2])
-    sum_4 = sum_list([-4, 6, -2])
-    sum_5 = sum_list([0, 0.6, -1.9, 12.3])
+    assert list_4.sum_list == 13.7
+    assert out5 == 'Only numerical lists are accepted\n'
 
-    # exceptions
-    sum_6 = sum_list([0, 5, 'Heya'])
-    out6, err6 = capsys.readouterr()
-    sum_7 = sum_list([])
+    list_6 = ArrayFunc([1.5, 3, 4, 912, 10.4, 0, 0])
+    list_6.calc_min_max()
+    list_7 = ArrayFunc([])
+    list_7.calc_min_max()
     out7, err7 = capsys.readouterr()
-    sum_8 = sum_list([5, float('inf')])
-    out8, err8 = capsys.readouterr()
 
-    assert sum_1 == 5
-    assert sum_2 == 9
-    assert sum_3 == 13.7
-    assert sum_4 == 0
-    assert sum_5 == 11
+    assert list_6.min_max == (0, 912)
+    assert out7 == 'Numerical list must be at least of length 1\n'
 
-    assert sum_6 is None
-    assert sum_7 is None
-    assert sum_8 is None
-    # 6 raises TypeError, 7 raises TypeError, 8 raises ValueError
-    assert out6 == 'Only numerical lists are accepted\n'
-    assert out7 == 'Only numerical lists are accepted\n'
-    assert out8 == 'Input contains inappropriate value\n'
-
-
-def test_minmax():
-    from arrayfunctions import min_max
-    assert min_max([1, 5, 3, 9, 5, 6]) == (1, 9)
-    assert min_max([1.5, 3, 4, 912, 10.4, 0, 0]) == (0, 912)
-    assert min_max([1.239, 1.2459, 5.6, -5]) == (-5, 5.6)
-
-
-def test_minmax_exceptions(capsys):
-    from arrayfunctions import min_max
-
-    t1 = min_max([])
-    out1, err1 = capsys.readouterr()
-    t2 = min_max(['One', 'Two', 'Three'])
-    out2, err2 = capsys.readouterr()
-
-    assert t1 is None
-    assert t2 is None
-    assert out1 == 'Numerical list must be at least of length 1\n'
-    assert out2 == 'Only numerical lists accepted\n'
+    list_8 = ArrayFunc([0, 1, 2, 3, 4, 5])
+    assert list_8.min_max is None
+    assert list_8.max_diff is None
+    assert list_8.sum_list is None
