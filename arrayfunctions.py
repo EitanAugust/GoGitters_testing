@@ -18,7 +18,6 @@ class ArrayFunc:
         '''Function to find the maximum magnitude difference between
         consecutive elements in a numerical list
 
-        :param self: class that is initialized containing an array
         :raises ValueError: if the numerical list input is of length
          less than 2
         :raises TypeError: if a non-numerical list is given
@@ -59,7 +58,6 @@ class ArrayFunc:
     def calc_sum_list(self):
         '''Function to find the sum of all elements in a list
 
-        :param self: class that is initialized containing an array
         :raises ValueError: if infinity is in the input array
         :raises TypeError: if list is empty or contains non-numericals
         :raises ImportError: if a required package was not loaded
@@ -89,7 +87,6 @@ class ArrayFunc:
     def calc_min_max(self):
         """Finds the minimum and maximum values of a numerical list.
 
-        :param self: class that is initialized containing an array
         :raises ImportError: if numpy is not installed
         :raises TypeError: if a non-numerical list is given
         :raises ValueError: if a numerical list is not of at least length 2
