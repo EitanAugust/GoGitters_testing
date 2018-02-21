@@ -5,4 +5,6 @@ Package to create 3 new attributes for a list of numbers
 * `min_max`: the maximum and minimum value of the numerical lists
 * `max_diff`: the maximum magnitude difference between consecutive elements
 
-For documentation, see [here](oop-gogitters.readthedocs.io):
+For documentation, see [here].
+
+[here]: http://oop-gogitters.readthedocs.io/en/latest/
