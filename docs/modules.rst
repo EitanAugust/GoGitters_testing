@@ -1,5 +1,5 @@
-GoGitters_testing
-=================
+GoGitters_OOP
+=============
 
 .. toctree::
    :maxdepth: 4

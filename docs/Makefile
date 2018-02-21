@@ -4,9 +4,9 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = UnitTestingandDocstrings
-SOURCEDIR     = .
-BUILDDIR      = _build
+SPHINXPROJ    = OOPApproachtoListFunctions-GoGitters
+SOURCEDIR     = source
+BUILDDIR      = build
 
 # Put it first so that "make" without argument is like "make help".
 help:
